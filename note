@@ -1,0 +1,108 @@
+todo-api/
+│
+├── cmd/
+│   └── server/
+│       └── main.go
+│
+├── config/
+│   ├── config.go
+│   └── config.yaml
+│
+├── docs/
+│   ├── swagger.json
+│   ├── swagger.yaml
+│   └── docs.go
+│
+├── internal/
+│   │
+│   ├── domain/
+│   │   ├── user.go
+│   │   ├── todo.go
+│   │   └── repository.go
+│   │
+│   ├── dto/
+│   │   ├── auth_request.go
+│   │   ├── auth_response.go
+│   │   ├── todo_request.go
+│   │   └── todo_response.go
+│   │
+│   ├── repository/
+│   │   ├── postgres/
+│   │   │   ├── user_repository.go
+│   │   │   └── todo_repository.go
+│   │   └── repository.go
+│   │
+│   ├── service/
+│   │   ├── auth_service.go
+│   │   ├── todo_service.go
+│   │   └── jwt_service.go
+│   │
+│   ├── handler/
+│   │   ├── auth_handler.go
+│   │   ├── todo_handler.go
+│   │   └── health_handler.go
+│   │
+│   ├── middleware/
+│   │   ├── auth.go
+│   │   ├── logger.go
+│   │   ├── cors.go
+│   │   └── recovery.go
+│   │
+│   ├── routes/
+│   │   └── routes.go
+│   │
+│   ├── database/
+│   │   ├── postgres.go
+│   │   └── migration.go
+│   │
+│   ├── utils/
+│   │   ├── hash.go
+│   │   ├── jwt.go
+│   │   ├── pagination.go
+│   │   ├── response.go
+│   │   └── validator.go
+│   │
+│   └── constants/
+│       └── role.go
+│
+├── migrations/
+│   ├── 001_create_users.sql
+│   └── 002_create_todos.sql
+│
+├── pkg/
+│   ├── logger/
+│   │   └── logger.go
+│   │
+│   └── helper/
+│       └── helper.go
+│
+├── scripts/
+│   ├── migrate.sh
+│   └── seed.sh
+│
+├── .env
+├── .env.example
+├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
+├── go.mod
+├── go.sum
+├── Makefile
+└── README.md
+
+
+
+Dependency
+    go get github.com/spf13/viper
+    go get github.com/gin-gonic/gin
+    go get gorm.io/gorm
+    go get gorm.io/driver/postgres
+    go get github.com/spf13/viper
+    go get github.com/golang-jwt/jwt/v5
+    go get golang.org/x/crypto/bcrypt
+
+
+doker
+http://127.0.0.1:5050/login
+    docker compose up -d
+    docker ps
