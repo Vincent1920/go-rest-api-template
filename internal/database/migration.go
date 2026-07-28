@@ -1,7 +1,14 @@
 package database
 
-import "gorm.io/gorm"
+import (
+	"todo-api/internal/domain"
+
+	"gorm.io/gorm"
+)
 
 func Migrate(db *gorm.DB) error {
-	return nil
+	return db.AutoMigrate(
+		&domain.User{},
+		&domain.Todo{},
+	)
 }

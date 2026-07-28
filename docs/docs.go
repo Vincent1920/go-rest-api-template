@@ -1,3 +1,5 @@
+package routes
+
 import (
 	"github.com/gin-gonic/gin"
 
@@ -8,9 +10,7 @@ import (
 )
 
 func RegisterRoutes(r *gin.Engine) {
-
 	api := r.Group("/api/v1")
-
 	{
 		// endpoint
 	}

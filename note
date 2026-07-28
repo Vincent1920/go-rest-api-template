@@ -103,6 +103,9 @@ Dependency
 
 
 doker
-http://127.0.0.1:5050/login
+    http://127.0.0.1:5050/login
     docker compose up -d
     docker ps
+
+run golang
+    go run ./cmd/server

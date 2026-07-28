@@ -31,6 +31,10 @@ func main() {
 		log.Fatal(err)
 	}
 
+	if err := database.Migrate(db); err != nil {
+		log.Fatal(err)
+	}
+
 	database.Migrate(db)
 
 	router := gin.Default()
