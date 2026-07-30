@@ -101,11 +101,18 @@ Dependency
     go get github.com/golang-jwt/jwt/v5
     go get golang.org/x/crypto/bcrypt
 
-
-doker
+Menjalankan container doker
     http://127.0.0.1:5050/login
     docker compose up -d
+Melihat container yang sedang berjalan
+    docker compose ps
     docker ps
+ingin menjalankan
+    docker compose start
+Setelah selesai ngoding:
+    docker compose down
+    docker compose stop
+   
 
 run golang
     go run ./cmd/server
