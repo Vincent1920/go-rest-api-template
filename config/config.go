@@ -1,6 +1,9 @@
 package config
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/spf13/viper"
 )
 
@@ -21,32 +24,46 @@ type Config struct {
 }
 
 func LoadConfig() (*Config, error) {
+	v := viper.New()
+	v.SetConfigName("config")
+	v.SetConfigType("yaml")
+	v.AddConfigPath("./config")
+	v.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	v.AutomaticEnv()
 
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./config")
+	v.SetDefault("app.name", "Todo API")
+	v.SetDefault("app.port", "8080")
+	v.SetDefault("app.mode", "debug")
+	v.SetDefault("database.host", "localhost")
+	v.SetDefault("database.port", "5433")
+	v.SetDefault("database.user", "postgres")
+	v.SetDefault("database.password", "postgres")
+	v.SetDefault("database.name", "todo_db")
+	v.SetDefault("database.sslmode", "disable")
+	v.SetDefault("jwt.expire", 24)
 
-	// Environment Variable
-	viper.AutomaticEnv()
-
-	if err := viper.ReadInConfig(); err != nil {
-		return nil, err
+	if err := v.ReadInConfig(); err != nil {
+		return nil, fmt.Errorf("read config: %w", err)
 	}
 
 	cfg := &Config{
-		AppName: viper.GetString("app.name"),
-		AppPort: viper.GetString("app.port"),
-		AppMode: viper.GetString("app.mode"),
+		AppName: v.GetString("app.name"),
+		AppPort: v.GetString("app.port"),
+		AppMode: v.GetString("app.mode"),
 
-		DBHost:     viper.GetString("database.host"),
-		DBPort:     viper.GetString("database.port"),
-		DBUser:     viper.GetString("database.user"),
-		DBPassword: viper.GetString("database.password"),
-		DBName:     viper.GetString("database.name"),
-		DBSSLMode:  viper.GetString("database.sslmode"),
+		DBHost:     v.GetString("database.host"),
+		DBPort:     v.GetString("database.port"),
+		DBUser:     v.GetString("database.user"),
+		DBPassword: v.GetString("database.password"),
+		DBName:     v.GetString("database.name"),
+		DBSSLMode:  v.GetString("database.sslmode"),
 
-		JWTSecret: viper.GetString("jwt.secret"),
-		JWTExpire: viper.GetInt("jwt.expire"),
+		JWTSecret: v.GetString("jwt.secret"),
+		JWTExpire: v.GetInt("jwt.expire"),
+	}
+
+	if strings.TrimSpace(cfg.JWTSecret) == "" {
+		return nil, fmt.Errorf("jwt.secret must not be empty")
 	}
 
 	return cfg, nil

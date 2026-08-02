@@ -10,7 +10,6 @@ import (
 )
 
 func Connect(cfg *config.Config) (*gorm.DB, error) {
-
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
 		cfg.DBHost,
@@ -21,30 +20,10 @@ func Connect(cfg *config.Config) (*gorm.DB, error) {
 		cfg.DBSSLMode,
 	)
 
-	// ==========================
-	// DEBUG CONFIG
-	// ==========================
-	fmt.Println("========== DATABASE CONFIG ==========")
-	fmt.Println("Host     :", cfg.DBHost)
-	fmt.Println("Port     :", cfg.DBPort)
-	fmt.Println("User     :", cfg.DBUser)
-	fmt.Println("Password :", cfg.DBPassword)
-	fmt.Println("Database :", cfg.DBName)
-	fmt.Println("SSLMode  :", cfg.DBSSLMode)
-	fmt.Println("=====================================")
-
-	fmt.Println("DSN:")
-	fmt.Println(dsn)
-
-	// ==========================
-	// CONNECT DATABASE
-	// ==========================
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("connect database: %w", err)
 	}
-
-	fmt.Println("✅ Database connected successfully")
 
 	return db, nil
 }
