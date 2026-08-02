@@ -1,29 +1,62 @@
-# Go REST API Template
+# Go Todo REST API
 
-A production-ready REST API template built with:
-
-- Go
-- Gin
-- PostgreSQL
-- GORM
-- Docker
-- Clean Architecture
-- JWT Authentication (Coming Soon)
-- Swagger (Coming Soon)
+A REST API for managing Todo data, built with Go, Gin, PostgreSQL, GORM, Docker, JWT Authentication, and Clean Architecture.
 
 ## Features
 
-- Clean Architecture
-- PostgreSQL
-- GORM
+- User registration
+- User login
+- JWT authentication
+- Protected user profile endpoint
+- Password hashing with bcrypt
+- PostgreSQL database
+- GORM Auto Migration
 - Docker Compose
-- Configuration with YAML
-- Auto Migration
+- pgAdmin
+- Clean Architecture
+- Configuration using YAML
+- Todo CRUD
+- Pagination
+- Search
+- Swagger documentation
 
 ## Tech Stack
 
 - Go
 - Gin
-- GORM
 - PostgreSQL
+- GORM
 - Docker
+- Docker Compose
+- JWT
+- bcrypt
+- Viper
+- Swagger
+
+## Project Structure
+
+```text
+todo-api/
+├── cmd/
+│   └── server/
+│       └── main.go
+├── config/
+│   ├── config.go
+│   └── config.yaml
+├── docs/
+├── internal/
+│   ├── database/
+│   ├── domain/
+│   ├── dto/
+│   ├── handler/
+│   ├── middleware/
+│   ├── repository/
+│   ├── routes/
+│   ├── service/
+│   └── utils/
+├── migrations/
+├── docker-compose.yml
+├── Dockerfile
+├── go.mod
+├── go.sum
+└── README.md
