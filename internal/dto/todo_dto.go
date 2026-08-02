@@ -9,9 +9,9 @@ type CreateTodoRequest struct {
 }
 
 type UpdateTodoRequest struct {
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Status      string `json:"status"`
+	Title       *string `json:"title" binding:"omitempty,max=200"`
+	Description *string `json:"description"`
+	Status      *string `json:"status"`
 }
 
 type TodoResponse struct {
